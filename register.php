@@ -47,7 +47,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password_err = "Please enter a password.";     
     } elseif(strlen(trim($_POST["password"])) < 6){
         $password_err = "Password must have atleast 6 characters.";
-    } else{
+    } elseif(!preg_match("#[0-9]+#",$password)) {
+        $passwordErr = "Your Password Must Contain At Least 1 Number!";
+    } elseif(!preg_match("#[A-Z]+#",$password)) {
+        $passwordErr = "Your Password Must Contain At Least 1 Capital Letter!";
+    } elseif(!preg_match("#[a-z]+#",$password)) {
+        $passwordErr = "Your Password Must Contain At Least 1 Lowercase Letter!";
+    } elseif(preg_match('/[!-%\'-\/:-?\[-{-~]/', $password)){
+        $passwordErr = "Your Passowrd Must Contain A Special Character!";
+    }else{
         $password = trim($_POST["password"]);
     }
     
