@@ -1,12 +1,36 @@
-<!-- welcome.php -->
+<?php
+// Initialize the session
+session_start();
+//require_once "config.php";
+//$sql = "SELECT first_name FROM users WHERE username = '" . $_SESSION['username'] . "'"; 
+//$_SESSION["first_name"] = mysqli_query($link, $sql);
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+//require_once "config.php";
+?>
+ 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Welcome</title>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; text-align: center; }
+    </style>
 </head>
 <body>
-    <img src="https://www.callcentrehelper.com/images/stories/2018/11/welcome-red-sign-760.png" alt="welcome" /img>
+    <div class="page-header">
+        <h1>Hi, <b><?php echo htmlspecialchars("{$_SESSION['first_name']} {$_SESSION['last_name']}"); ?></b>. Welcome to our site.</h1>
+    </div>
+    <p>
+        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
+        <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
+    </p>
 </body>
 </html>
