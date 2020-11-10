@@ -25,7 +25,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h1>Hi, <b><?php echo htmlspecialchars("{$_SESSION['first_name']} {$_SESSION['last_name']}"); ?></b>. Welcome to our site.</h1>
     </div>
     <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
+        <a href="company_confidential_file.txt" download class="btn btn-warning">Download company_confidential_file.txt</a>
         <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
 </body>
