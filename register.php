@@ -170,13 +170,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style type="text/css">
         body{ font: 14px sans-serif; }
 	.wrapper{ width: 350px; padding: 20px; }
-	.real-time{
-	    float: right;
-	    <!--position: relative;-->
-	    top: 100px;
-            right: 100px;
-        }
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -217,7 +212,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
-            </div>
+	    </div>
+            <div class="g-recaptcha" data-sitekey="6Lc0MOEZAAAAAOs8VuvUx-vmSo2FcviImt7bImx4"></div><br/>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
