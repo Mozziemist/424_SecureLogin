@@ -57,7 +57,8 @@ echo "CREATE DATABASE secureApp; USE secureApp; CREATE TABLE users (
     birth_date DATE NOT NULL,
     username VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    login_times INT
+    last_login DATE,
+    login_count SMALLINT DEFAULT '0'
 );" | mysql
 
 # Give permissions to root@localhost
