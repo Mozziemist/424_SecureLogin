@@ -64,11 +64,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
 			    $_SESSION["username"] = $username;
 
-			    $result = mysqli_query($link, "SELECT first_name, last_name FROM users WHERE username = '$username'");
+			    $result = mysqli_query($link, "SELECT first_name, last_name, last_login FROM users WHERE username = '$username'");
                             $row = mysqli_fetch_array($result);
 			    $_SESSION["first_name"] = $row[0];
 			    $_SESSION["last_name"] = $row[1];
-
+                            
+			    // Store login timestamp
+			    $timestamp = date("Y-m-d H:i:s");
+			    $store_time = "UPDATE users SET last_login = '$timestamp' WHERE username = '$username'";
+			    if(is_Null($row[2])){
+				$_SESSION["timestamp"] = "00-00-00 00:00:00";
+				if(!mysqli_query($link, $store_time)){
+                                    echo "Error: " .  $sql . "<br>" . mysqli_error($link);
+                                }  
+			    } else {
+                                $_SESSION["timestamp"] = $row[2];
+			        if(!mysqli_query($link, $store_time)){
+				    echo "Error: " .  $sql . "<br>" . mysqli_error($link);
+				}
+			    }
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{
@@ -122,8 +136,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+	    </div>
+	    <p>Forgot <a href="forgot_username.php"><b>username</b></a> or <a href="forgot_password.php"><b>password</b></a>?</p>
+            <p>Don't have an account? <a href="register.php"><b>Sign up now</b></a>.</p>
         </form>
     </div>    
 </body>
