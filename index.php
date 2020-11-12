@@ -13,7 +13,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$username = $password = $first_name = $last_name = "";
+$username = $password = "";
 $username_err = $password_err = "";
 
 // Processing form data when form is submitted
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
 			    $_SESSION["username"] = $username;
-
+			    
 			    $result = mysqli_query($link, "SELECT first_name, last_name, last_login FROM users WHERE username = '$username'");
                             $row = mysqli_fetch_array($result);
 			    $_SESSION["first_name"] = $row[0];
@@ -73,16 +73,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			    $timestamp = date("Y-m-d H:i:s");
 			    $store_time = "UPDATE users SET last_login = '$timestamp' WHERE username = '$username'";
 			    if(is_Null($row[2])){
-				$_SESSION["timestamp"] = "00-00-00 00:00:00";
+				$_SESSION["last_login"] = "00-00-00 00:00:00";
 				if(!mysqli_query($link, $store_time)){
                                     echo "Error: " .  $sql . "<br>" . mysqli_error($link);
                                 }  
 			    } else {
-                                $_SESSION["timestamp"] = $row[2];
+                                $_SESSION["last_login"] = $row[2];
 			        if(!mysqli_query($link, $store_time)){
 				    echo "Error: " .  $sql . "<br>" . mysqli_error($link);
 				}
 			    }
+
+			    // Store login count
+			    $update_login = "UPDATE users SET login_count = login_count + 1 WHERE username = '$username'";
+                            mysqli_query($link, $update_login);
+			    $get_store = mysqli_query($link, "SELECT login_count FROM users WHERE username = '$username'");
+			    $login_count = mysqli_fetch_array($get_store);
+                            $_SESSION["login_count"] = $login_count[0];
+
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{
