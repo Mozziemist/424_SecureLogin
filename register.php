@@ -189,6 +189,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script>
+                function passwordStrength(password)
+                {
+                var desc = new Array();
+                desc[0] = "Very Weak";
+                desc[1] = "Weak";
+                desc[2] = "Better";
+                desc[3] = "Medium";
+                desc[4] = "Strong";
+                desc[5] = "Strongest";
+                var score   = 0;
+                //if password bigger than 6 give 1 point
+                if (password.length > 6) score++;
+                //if password has both lower and uppercase characters give 1 point  
+                if ( ( password.match(/[a-z]/) ) && ( password.match(/[A-Z]/) ) ) score++;
+                //if password has at least one number give 1 point
+                if (password.match(/\d+/)) score++;mob
+                //if password has at least one special caracther give 1 point
+                if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) ) score++;
+                //if password bigger than 12 give another 1 point
+                if (password.length > 12) score++;
+                document.getElementById("passwordDescription").innerHTML = desc[score];
+                document.getElementById("passwordStrength").className = "strength" + score;
+                }
+    </script>
+
+
     <style type="text/css">
         body{ font: 14px sans-serif; }
 	.wrapper{ width: 350px; padding: 20px; }
@@ -227,12 +254,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<div class="invalid-feedback">Please enter a valid username.</div>
                 <span class="form-text" style="color:red;"><?php echo $username_err; ?></span>
 	    </div>   
-	    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-		<label>Password</label>
+	    
+        
+        
+             
+        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>"> 
+        <label>Password</label>
 		<input type="password" name="password" id="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" placeholder="Password" value="<?php echo $password; ?>" aria-describedby="passwordHelpBlock" required>
                 <small id="passwordHelpBlock" class="form-text text-muted">Must be at least 8 characters long and contain at least 1 capital letter, 1 lowercase letter, 1 number, and 1 special character from the following: ~!@#$%^&amp;*()-_=+{}\|:;'",./&lt;&gt;?</small>
 		<div class="invalid-feedback">Please enter a valid password.</div>
-	    </div>
+	    
+        
+        <input type="password"  onkeyup="passwordStrength(this.value)" class="form-control"  maxlength="30" minlength="8" id="password" name="password" placeholder="Enter password">
+        <div id="passwordStrength" class="strength0"></div>
+
+
+
+
+        
+        
+        
+        </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" id="confirm" class="form-control" placeholder="Confirm Password" value="<?php echo $confirm_password; ?>" required>
