@@ -266,6 +266,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	    
         
         <input type="password"  onkeyup="passwordStrength(this.value)" class="form-control"  maxlength="30" minlength="8" id="password" name="password" placeholder="Enter password">
+        <span class="small">We recommend you use a strong, unique password. <a href="#" data-toggle="modal" data-target="#myModal">Find out more.</a>
         <div id="passwordStrength" class="strength0"></div>
 
 
