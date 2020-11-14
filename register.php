@@ -233,7 +233,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         
         
-        <div class="form-group <?php  (!isset($password_err)) ? 'style="display:none;"' : echo $password_err; ?>">
+        <!-- <div class="form-group <?php  (!isset($password_err)) ? 'style="display:none;"' : echo $password_err; ?>"> -->
+
+        <?php  if (isset($password_err)){?>
+                <div>there is an error</div>
+        <?php } ?>
 
 
 		<label>Password</label>
