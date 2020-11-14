@@ -227,12 +227,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<div class="invalid-feedback">Please enter a valid username.</div>
                 <span class="form-text" style="color:red;"><?php echo $username_err; ?></span>
 	    </div>   
-	    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+	    
+        
+        
+        
+        
+        
+        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+
+
 		<label>Password</label>
 		<input type="password" name="password" id="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" placeholder="Password" value="<?php echo $password; ?>" aria-describedby="passwordHelpBlock" required>
                 <small id="passwordHelpBlock" class="form-text text-muted">Must be at least 8 characters long and contain at least 1 capital letter, 1 lowercase letter, 1 number, and 1 special character from the following: ~!@#$%^&amp;*()-_=+{}\|:;'",./&lt;&gt;?</small>
 		<div class="invalid-feedback">Please enter a valid password.</div>
-	    </div>
+	    
+        
+
+
+
+
+
+
+
+
+
+        
+        
+        
+        
+        </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
                 <input type="password" name="confirm_password" id="confirm" class="form-control" placeholder="Confirm Password" value="<?php echo $confirm_password; ?>" required>
