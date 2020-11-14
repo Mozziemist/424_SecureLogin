@@ -189,6 +189,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
     <style type="text/css">
         body{ font: 14px sans-serif; }
 	.wrapper{ width: 350px; padding: 20px; }
