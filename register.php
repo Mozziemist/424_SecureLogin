@@ -358,10 +358,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-		<label>Password</label>
+		<!-- <label>Password</label>
 		<input type="password" name="password" id="password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" placeholder="Password" value="<?php echo $password; ?>" aria-describedby="passwordHelpBlock" required>
                 <small id="passwordHelpBlock" class="form-text text-muted">Must be at least 8 characters long and contain at least 1 capital letter, 1 lowercase letter, 1 number, and 1 special character from the following: ~!@#$%^&amp;*()-_=+{}\|:;'",./&lt;&gt;?</small>
-		<div class="invalid-feedback">Please enter a valid password.</div>
+		<div class="invalid-feedback">Please enter a valid password.</div> -->
 	    
         
 
