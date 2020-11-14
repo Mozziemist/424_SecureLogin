@@ -295,9 +295,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input class="form-control input-lg" placeholder="Security Answer" name="answer2" value="" type="text" required>
             </div>
 
-            <!--************CAPTCHA*************-->
-            <!--<div class="g-recaptcha" data-sitekey="6Lc0MOEZAAAAAOs8VuvUx-vmSo2FcviImt7bImx4" required></div><br />
-            <div class="invalid-feedback">Please complete the reCAPTCHA.</div>-->
+            
+            <div class="g-recaptcha" data-sitekey="6Lc0MOEZAAAAAOs8VuvUx-vmSo2FcviImt7bImx4" required></div><br />
+            <div class="invalid-feedback">Please complete the reCAPTCHA.</div>
             
 
             <div class="form-group">
